@@ -33,30 +33,30 @@ installdockercompose() {
     fi
 }
 
-installdockercontainer(){
-    if [[ -n $(docker ps -q -f "name=^$1$") ]];then
-        echo "$1 已安装！"
-    else
-        echo -e "检测到$1未安装！"
-        cd $myPath/$1 && docker-compose up -d
-        echo " ***** 安装 $1 工具完成 ***** "
-    fi
-}
-
 clonedocker(){
     if [ -d "$myPath" ]; then
         echo -e "检测到${myPath}已克隆！"
-        git pull
+        cd $myPath && git pull
     else
         echo -e "检测到${myPath}未克隆！"
-        cd $myPath
-        git clone https://github.com/lucats1993/docker.git
+        cd / && git clone https://github.com/lucats1993/docker.git
     fi
 
 }
+
+installdockercontainer(){
+    for i in "$@"; do
+        if [[ -n $(docker ps -q -f "name=^$i$") ]];then
+            echo "容器 $i 已安装！"
+        else
+            echo -e "容器 $i 未安装！"
+            cd $myPath/$i && docker-compose up -d
+            echo " ***** 安装 $i 容器完成 ***** "
+        fi
+    done
+}
+
 myPath="/docker"
-installdocker
-installdockercompose
+installdocker && installdockercompose
 clonedocker
-installdockercontainer "v2ray"
-installdockercontainer "alist"
+installdockercontainer "v2ray" "alist"
