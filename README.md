@@ -39,9 +39,8 @@ docker-compose -v
 # 安装
 ```
 cd / 
-wget -O docker.zip "https://codeload.github.com/lucats1993/docker/zip/refs/heads/main"
-yum install -y unzip
-unzip docker.zip && mv docker-main docker
+yum -y install git 
+git clone https://github.com/lucats1993/docker.git
 ```
 
 - v2ray   
