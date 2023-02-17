@@ -59,4 +59,4 @@ installdockercontainer(){
 myPath="/docker"
 installdocker && installdockercompose
 clonedocker
-installdockercontainer "v2ray" "alist"
+installdockercontainer "v2ray" "alist" "frps"
