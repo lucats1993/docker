@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  v2ray:
+    container_name: v2ray
+    image: v2ray/official
+    restart: always
+    environment:
+      LANG: en_US.utf8
+      LC_ALL: en_US.utf8
+    ports:
+      - "8888:8888"
+      - "6666:6666"
+    volumes:
+      - /docker/v2ray:/etc/v2ray
+      - /var/log/v2ray:/var/log/v2ray
+      - /etc/localtime:/etc/localtime:ro

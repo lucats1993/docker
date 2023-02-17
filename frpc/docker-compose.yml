@@ -1,0 +1,11 @@
+version: '3.4'
+services:
+  frpc:
+    container_name: frpc
+    image: snowdreamtech/frpc
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /docker/frpc/frpc.ini:/etc/frp/frpc.ini
+    environment:
+      - TZ=Asia/Shanghai
