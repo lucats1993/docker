@@ -46,6 +46,7 @@ installdockercontainer(){
 clonedocker(){
     if [ -d "$myPath" ]; then
         echo -e "检测到${myPath}已克隆！"
+        git pull
     else
         echo -e "检测到${myPath}未克隆！"
         cd $myPath
@@ -56,5 +57,6 @@ clonedocker(){
 myPath="/docker"
 installdocker
 installdockercompose
+clonedocker
 installdockercontainer "v2ray"
 installdockercontainer "alist"
