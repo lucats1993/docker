@@ -20,7 +20,7 @@ installdocker() {
 installdockercompose() {
     echo "检查docker-compose是否已安装……"
     docker-compose -v
-    if [ $? -ne  0 ]; then
+    if [ $? -ne 0 ]; then
         echo "检测到docker-compose未安装！"
         echo
         echo " ***** 开始安装 docker-compose 工具 ***** "
@@ -33,29 +33,28 @@ installdockercompose() {
     fi
 }
 
-myPath="/docker"
-
-if [ ! -d "$myPath"]; then
-    git clone https://github.com/lucats1993/docker.git
-fi
-
-
-if [[ -n $(docker ps -q -f "name=^v2ray") ]];then
-	echo "v2ray 已安装！"
-else
-    echo "检测到v2ray未安装！"
-    cd /docker/v2ray && docker-compose up -d
-    echo " ***** 安装 v2ray 工具完成 ***** "
-fi
-
 installdockercontainer(){
-    if [[ -n $(docker ps -q -f "name=^${name}") ]];then
-        echo "${name} 已安装！"
+    if [[ -n $(docker ps -q -f "name=^$1$") ]];then
+        echo "$1 已安装！"
     else
-        echo -e "检测到${name}未安装！"
-        cd /docker/${name} && docker-compose up -d
-        echo " ***** 安装 ${name} 工具完成 ***** "
+        echo -e "检测到$1未安装！"
+        cd $myPath/$1 && docker-compose up -d
+        echo " ***** 安装 $1 工具完成 ***** "
     fi
 }
 
+clonedocker(){
+    if [ -d "$myPath" ]; then
+        echo -e "检测到${myPath}已克隆！"
+    else
+        echo -e "检测到${myPath}未克隆！"
+        cd $myPath
+        git clone https://github.com/lucats1993/docker.git
+    fi
+
+}
+myPath="/docker"
+installdocker
+installdockercompose
 installdockercontainer "v2ray"
+installdockercontainer "alist"
