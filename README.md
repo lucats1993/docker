@@ -1,8 +1,11 @@
+
 ## bbr
 ```shell
 预先准备
 centos：yum install ca-certificates wget -y && update-ca-trust force-enable
 debian/ubuntu：apt-get install ca-certificates wget -y && update-ca-certificates
+
+wget -O tcpx.sh "https://github.com/ylx2016/Linux-NetSpeed/raw/master/tcpx.sh" && chmod +x tcpx.sh && ./tcpx.sh
 
 不卸载内核版本
 
@@ -34,13 +37,12 @@ chmod +x /usr/local/bin/docker-compose
 docker-compose -v
 ```
 # 安装
-
-
 ```
-tar -czvf docker.tar.gz  /docker (tar -czvf 包名.tar.gz  源文件)        #以tar.gz方式打包并gz方式压缩
-tar -xzvf xxx.tar.gz -C path (tar -xzvf xxx.tar.gz -C 目标路径)          #解压缩包
+cd / 
+wget -O docker.zip "https://codeload.github.com/lucats1993/docker/zip/refs/heads/main"
+yum install -y unzip
+unzip docker.zip && mv docker-main docker
 ```
-
 
 - v2ray   
 
